@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Category;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,8 +20,20 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        Category::create([
-
-        ]);
+        $color=['red','orange','amber','yellow','lime','green',
+            'emerald','teal','cyan','sky','blue','indigo','violet',
+            'purple','fuchsia','pink','rose'];
+        $categories=[
+            ['FnB','orange'],
+            ['Transport','emerald'],
+            ['Groceries','cyan'],
+            ['Shopping','violet']
+        ];
+        foreach($categories as $category){
+            Category::create([
+                'name'=>$category[0],
+                'color'=>$category[1]
+            ]);
+        }
     }
 }
