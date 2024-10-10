@@ -13,7 +13,9 @@ class EntryController extends Controller
      */
     public function index()
     {
-        //
+        return view('history',[
+            'entries'=>Entry::all()
+        ]);
     }
 
     /**

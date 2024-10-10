@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
             'emerald','teal','cyan','sky','blue','indigo','violet',
             'purple','fuchsia','pink','rose'];
         $categories=[
-            ['FnB','orange'],
-            ['Transport','emerald'],
-            ['Groceries','cyan'],
+            ['FnB','red'],
+            ['Transport','yellow'],
+            ['Groceries','blue'],
             ['Shopping','violet']
         ];
         foreach($categories as $category){

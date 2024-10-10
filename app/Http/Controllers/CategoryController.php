@@ -12,7 +12,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories',[
+            'categories'=>Category::all()
+        ]);
     }
 
     /**
