@@ -15,6 +15,9 @@ class CategoryEdit extends Component
         $this->category->delete();
         $this->dispatchBrowserEvent('category-deleted', ['categoryId' => $this->category->id]);
     }
+    public function CloseModal(){
+        $this->dispatch('close-modal');
+    }
     public function render()
     {
         return view('livewire.category-edit');

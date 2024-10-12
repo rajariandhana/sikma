@@ -9,8 +9,9 @@
 </head>
 <body class="bg-gray-100">
 	@livewireScripts
+    @livewire('livewire-ui-modal')
 	<x-navbar></x-navbar>
-	<div class="flex flex-col w-full gap-y-4 px-8 my-6">
+	<div class="flex flex-col w-full gap-y-4 px-4 my-4">
 		{{$slot}}
 	</div>
     {{-- <x-footer></x-footer> --}}

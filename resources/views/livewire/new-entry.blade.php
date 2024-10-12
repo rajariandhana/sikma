@@ -1,20 +1,13 @@
 <div>
     {{-- @if ($newEntry) --}}
-        <form class="bg-white rounded-md shadow-md p-4 flex flex-col gap-y-4 h-full"  wire:submit.prevent="StoreEntry">
-            <div class="flex gap-x-4">
-                <select wire:model="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 y-600">
-                    {{-- <option selected disabled>Category</option> --}}
+        <form class="bg-white rounded-md shadow-md p-4 flex flex-col gap-y-4 h-full" wire:submit.prevent="StoreEntry">
+            <div class="w-full flex gap-x-4">
+                <select wire:model="category_id" class="bg-gray-50 w-1/2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 y-600">
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
-                @error('category_id')
-                    <span class="text-xs text-red-500">{{$message}}</span>
-                @enderror
-                <input wire:model="date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{date('Y-m-d')}}">
-                @error('date')
-                    <span class="text-xs text-red-500">{{$message}}</span>
-                @enderror
+                <input wire:model="date" type="date" class="bg-gray-50 w-1/2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" value="{{date('Y-m-d')}}">
             </div>
             <div class="flex">
                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
