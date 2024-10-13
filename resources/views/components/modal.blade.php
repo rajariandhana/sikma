@@ -1,6 +1,6 @@
 @props(['name', 'title','footer'])
 
-<div x-data="{ show : true , name : '{{ $name }}' }" 
+<div x-data="{ show : false , name : '{{ $name }}' }" 
     x-show="show"
     x-on:open-modal.window="show = ($event.detail.name === name)" 
     x-on:close-modal.window="show = false"
@@ -26,11 +26,11 @@
         <div class="p-4 ">
             {{ $body }}
         </div>
-        @if (isset($footer))
+        @isset ($footer)
             <div class="flex items-center justify-between px-4 py-2 border-t border-gray-300 gap-x-4">
                 {{$footer}}
             </div>
-        @endif
+        @endisset
 
     </div>
 </div>
