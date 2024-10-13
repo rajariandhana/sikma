@@ -4,5 +4,5 @@
             CATEGORIES
         </span>
     </div>
-    @livewire('categories-edit')
+    @livewire('category-index')
 </x-layout>
