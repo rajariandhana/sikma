@@ -1,4 +1,4 @@
-<div class="bg-red-200 p-4 rounded-md shadow-md w-full">
+<div class="w-full p-4 bg-red-200 rounded-md shadow-md">
     <form action="">
         <input type="text" value="{{$category->name}}">
         <input type="text" value="{{$category->color}}">
