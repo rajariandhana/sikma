@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Preset;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -35,5 +36,17 @@ class DatabaseSeeder extends Seeder
                 'color'=>$category[1]
             ]);
         }
+        Preset::create([
+            'price'=>10000,
+            'category_id' => Category::where('name', 'FnB')->first()->id
+        ]);
+        Preset::create([
+            'price'=>15000,
+            'category_id' => Category::where('name', 'FnB')->first()->id
+        ]);
+        Preset::create([
+            'price'=>12000,
+            'category_id' => Category::where('name', 'Transport')->first()->id
+        ]);
     }
 }

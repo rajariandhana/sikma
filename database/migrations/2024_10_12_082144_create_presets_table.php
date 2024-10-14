@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('presets', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('price');
+            $table->foreignId('category_id')->nullable()->constrained('categories','id')->onDelete('set null');
             $table->timestamps();
         });
     }
