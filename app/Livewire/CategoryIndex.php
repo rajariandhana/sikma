@@ -12,28 +12,45 @@ class CategoryIndex extends Component
     public ?Category $selectedCategory=null;
     public $colors;
     public $name,$color;
+    public $form;
     public function mount(){
         $this->categories=Category::all();
         $this->colors = ['red','orange','amber','yellow','lime','green',
         'emerald','teal','cyan','sky','blue','indigo','violet',
         'purple','fuchsia','pink','rose'];
         // $this->CategoryShow($this->categories[0]);
-        $this->CategoryReset();
+        $this->Close();
     }
-
+    public function CategoryCreateForm(){
+        $this->form='create';
+    }
+    public function CategoryStore(){
+        $validated = $this->validate([
+            'name' => 'required|string|unique:categories,name',
+            'color' => 'required|string|in:' . implode(',', $this->colors),
+        ]);
+        // dump("hit");
+        Category::create($validated);
+        $this->categories = Category::all();
+        $this->successMessage = 'Category successfully created!';
+        $this->Close();
+    }
     public function CategoryShow(Category $category){
         // dump($category);
         if(!$category) return;
-        $this->selectedCategory = $category;
         $this->name = $category->name;
         $this->color = $category->color;
-        // dump($this->selectedCategory->name);
-        $this->dispatch('open-modal',name:'category-details');
+        $this->form='editing';
+        $this->selectedCategory=$category;
     }
     public function CategoryUpdate(){
         if(!$this->selectedCategory) return;
         $validated = $this->validate([
-            'name'=>'required|string|unique:categories,name' . $this->selectedCategory->id,
+            'name'=>[
+                'required',
+                'string',
+                'unique:categories,name,' . ($this->selectedCategory->id ?? ''),
+            ],
             'color' => 'required|string|in:' . implode(',', $this->colors),
         ]);
         $this->selectedCategory->name = $validated['name'];
@@ -41,45 +58,19 @@ class CategoryIndex extends Component
         $this->selectedCategory->save();
         $this->categories = Category::all();
         $this->successMessage = 'Category successfully updated!';
-        $this->CategoryReset();
+        $this->Close();
     }
-    public function CategoryDelete()
-    {
+    public function CategoryDelete(){
         if (!$this->selectedCategory) return;
-        // $this->dispatch('close-modal');
         $this->selectedCategory->delete();
         $this->successMessage = 'Category deleted successfully!';
         $this->categories = Category::all();
-
-        $this->CategoryReset();
+        $this->Close();
     }
-    public function CategoryReset(){
-        if ($this->categories->isNotEmpty()){
-            $this->CategoryShow($this->categories->first());
-        }
-        else{
-            $this->selectedCategory = null;
-            $this->name = null;
-            $this->color = null;
-        }
-        $this->dispatch('close-modal');
-    }
-    public function CategoryCreateForm(){
+    public function Close(){
+        $this->form=null;
         $this->name = null;
-        $this->color = null;
-        $this->dispatch('open-modal',name:'category-new-form');
-
-    }
-    public function CategoryStore(){
-        if(!$this->selectedCategory) return;
-        $validated = $this->validate([
-            'name'=>'required|string|unique:categories,name' . $this->selectedCategory->id,
-            'color' => 'required|string|in:' . implode(',', $this->colors),
-        ]);
-        Category::create($validated);
-        $this->categories = Category::all();
-        $this->successMessage = 'Category successfully created!';
-        $this->CategoryReset();
+        $this->color = $this->colors[0];
     }
     public function render()
     {
