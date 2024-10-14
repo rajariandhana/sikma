@@ -66,7 +66,7 @@ class CategoryIndex extends Component
     }
     public function CategoryCreateForm(){
         $this->name = null;
-        $this->color = null;
+        $this->color = $this->colors[0];
         $this->dispatch('open-modal',name:'category-new-form');
 
     }

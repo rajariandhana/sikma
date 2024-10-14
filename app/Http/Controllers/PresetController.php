@@ -13,7 +13,9 @@ class PresetController extends Controller
      */
     public function index()
     {
-        //
+        return view('presets',[
+            'presets'=>Preset::all()
+        ]);
     }
 
     /**
