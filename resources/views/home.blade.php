@@ -12,5 +12,6 @@
     </div> --}}
     {{-- <div class="h-screen bg-blue-300 flex flex-col justify-end pb-44"> --}}
     @livewire('new-entry')
+    @livewire('preset-entry')
     {{-- </div> --}}
 </x-layout>

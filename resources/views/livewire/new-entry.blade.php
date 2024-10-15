@@ -32,7 +32,7 @@
             </div>
 
         </form>
-        @dump(App\Models\Entry::all())
+        {{-- @dump(App\Models\Entry::all()) --}}
     {{-- @endif --}}
     {{-- <div class="fixed flex justify-end w-full pr-16 bottom-24">
         <button class="" wire:click="NewEntry">
