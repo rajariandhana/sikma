@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('presets', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('price');
-            $table->foreignId('category_id')->nullable()->constrained('categories','id')->onDelete('set null');
+            $table->foreignId('category_id')->constrained('categories','id')->onDelete('cascade');
             $table->timestamps();
         });
     }

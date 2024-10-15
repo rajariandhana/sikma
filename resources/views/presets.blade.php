@@ -4,7 +4,7 @@
             PRESETS
         </h3>
         <span class="">
-            Create your presets here then in home, with one simple click a new entry will be added.
+            With one simple click, your regular purchases can be inserted. Define your presets here and it will be ready to use in home.
         </span>
     </div>
     @livewire('preset-index')

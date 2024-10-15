@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('categories','id')->onDelete('set null');
             $table->unsignedInteger('price');
             $table->string('description')->nullable();
+            $table->date('date');
             $table->timestamps();
         });
     }

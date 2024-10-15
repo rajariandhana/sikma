@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Entry extends Model
 {
     use HasFactory;
-    protected $fillable = ['category_id','price','description'];
+    protected $fillable = ['category_id','price','description','date'];
     public function category(): BelongsTo{
         return $this->belongsTo(Category::class);
     }
