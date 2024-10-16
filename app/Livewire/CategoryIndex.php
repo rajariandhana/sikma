@@ -13,11 +13,13 @@ class CategoryIndex extends Component
     public $colors;
     public $name,$color;
     public $form;
+    public $successMessage;
     public function mount(){
         $this->categories=Category::all();
         $this->colors = ['red','orange','amber','yellow','lime','green',
         'emerald','teal','cyan','sky','blue','indigo','violet',
         'purple','fuchsia','pink','rose'];
+        $this->successMessage='';
         // $this->CategoryShow($this->categories[0]);
         $this->Close();
     }
