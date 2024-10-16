@@ -38,7 +38,8 @@ class PresetIndex extends Component
         // dump($preset);
         if(!$preset) return;
         $this->price = $preset->price;
-        $this->category_id = $preset->category_id;
+        $this->category_id = Category::find($preset->category_id)->name;
+
         $this->form='editing';
         $this->selectedPreset = $preset;
         // $this->selectedPreset=$preset;

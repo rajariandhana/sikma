@@ -8,6 +8,7 @@ A simple finance tracker for students
 | 5025221081 | Ralfazza Rajariandhana |
 
 
+
 ### To use this project
 From the github repo webpage click code then 'Open in GitHub Desktop', let the app open and find the proper location you want to put it. Open the terminal on the project directory.
 1. <code>composer update</code>
@@ -23,3 +24,4 @@ From the github repo webpage click code then 'Open in GitHub Desktop', let the a
 - modify an entry's category, value, and date, even to delete an entry
 - custom user preset for your most frequent purchases
 
+### Modal
