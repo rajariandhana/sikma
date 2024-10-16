@@ -7,6 +7,11 @@ A simple finance tracker for students
 | 5025221074 | Muhammad Reza Octavianto |
 | 5025221081 | Ralfazza Rajariandhana |
 
+### Presentation
+https://youtu.be/zOjHyqmDohs
+
+### Demo
+https://sikma.ralfazza.com
 
 
 ### To use this project
