@@ -27,7 +27,7 @@ class HistoryIndex extends Component
 
     public function filterEntries()
     {
-        if ($this->selectedCategories === 'all') {
+        if ($this->selectedCategories == 'all') {
             $this->entries = Entry::all(); // Show all entries
         } elseif (count($this->selectedCategories) > 0) {
             $this->entries = Entry::whereIn('category_id', $this->selectedCategories)->get();
@@ -38,9 +38,12 @@ class HistoryIndex extends Component
 
     public function updatedSelectedCategories($value)
     {
+        // dump($this->selectedCategories);
+
         // Ensure selectedCategories is an array
         if (is_string($value)) {
-            $this->selectedCategories = [$value];
+            if($value=='all') $this->selectedCategories ='all';
+            else $this->selectedCategories = [$value];
         } else {
             $this->selectedCategories = $value; // if it’s an array, keep it
         }
@@ -56,7 +59,7 @@ class HistoryIndex extends Component
         $this->date = $entry->date;
         $this->form='editing';
         $this->selectedEntry = $entry;
-        
+
         // dump($this->selectedEntry);
         // $this->selectedEntry=$entry;
     }
