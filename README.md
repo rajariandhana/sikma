@@ -225,7 +225,7 @@ A modal similar to the create form opens, but this time it allows the user to mo
 A "Save" button is provided, triggering the `CategoryUpdate` function, and a "Remove" button allows for category deletion with `CategoryDelete`.
 
 ### Preset Page
-![alt text](image-5.png)
+![alt text](image-4.png)
 
 Preset page are available for user to create a regular expenses without making a new entry.
 
