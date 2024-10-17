@@ -9,7 +9,9 @@
                         <div x-data="{ selectedCategory: @entangle('selectedCategories') }">
                             <select x-model="selectedCategory" x-on:change="$wire.filterEntries()"
                                 class="block px-4 py-2 bg-indigo-100 border-2 border-indigo-300 rounded-lg cursor-pointer">
-                                <option value="all" >Select a category</option> 
+
+                                <option value="all" >Show all</option>
+
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -95,7 +97,7 @@
     @if ($form=='editing')
         <x-modal-form title="Edit category">
             <x-slot:body>
-                
+
                 <div class="mb-5">
                     <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 ">Category</label>
                     <select wire:model="category_id"
