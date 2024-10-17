@@ -9,7 +9,9 @@
                         <div x-data="{ selectedCategory: @entangle('selectedCategories') }">
                             <select x-model="selectedCategory" x-on:change="$wire.filterEntries()"
                                 class="block px-4 py-2 bg-indigo-100 border-2 border-indigo-300 rounded-lg cursor-pointer">
+
                                 <option value="all" >Show all</option>
+
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach

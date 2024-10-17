@@ -47,7 +47,6 @@ class HistoryIndex extends Component
         } else {
             $this->selectedCategories = $value; // if it’s an array, keep it
         }
-
         $this->filterEntries(); // Call the filtering method after updating
     }
 
