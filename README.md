@@ -88,7 +88,7 @@ A Create button triggers the form submission. When the button is clicked, the St
 
 #### 7. Preset Entry
 ```php
-<div class="grid grid-cols-2 w-full gap-4">
+<div class="grid w-full grid-cols-2 gap-4">
     @forelse ($presets as $preset)
     <button wire:click="EntryStore({{ $preset }})" class="bg-{{ $preset->category->color }}-300 text-{{ $preset->category->color }}-800 text-left px-4 py-1 rounded-md shadow-md text-lg">
         {{$preset->category->name}} | {{ $preset->price }}
@@ -169,7 +169,7 @@ Inputs for category, price, and date are bound to the Livewire component using `
 
 #### 4. Entry Update and Delete Buttons
 ```php
-<button wire:click="EntryDelete" class="flex items-center px-2 py-2 text-white bg-rose-500 rounded-md shadow-md gap-x-2">
+<button wire:click="EntryDelete" class="flex items-center px-2 py-2 text-white rounded-md shadow-md bg-rose-500 gap-x-2">
     Remove
 </button>
 <button wire:click="EntryUpdate" class="flex items-center px-2 py-2 text-white bg-indigo-500 rounded-md shadow-md gap-x-2">
@@ -281,4 +281,49 @@ When editing a preset, the modal displays the preset's details in disabled input
 <button wire:click="PresetDelete">
     Remove
 </button>
+```
+
+## Controller
+For this project we also use Livewire that basically has a controller for a view thus we use Livewire's component's controller as our controller such as for getting data from Model, validating forms, even for CRUD operations. Following are some livewire controllers.
+NewEntry.php
+This function is called when a form is submitted, it validates the attributes to make sure the values are allowed, if it is then it creates a row in the Entry model.
+```php
+public function StoreEntry(){
+    $validated = $this->validate([
+        'category_id'=>'required',
+        'date'=>'required|date',
+        'price'=>'required|numeric|min:0|max:999999',
+        'description'=>'',
+    ]);
+    Entry::create($validated);
+    $this->successMessage = 'Entry successfully created!';
+}
+```
+CategoryIndex.php
+Theses functions are called when a button is clicked. In CategoryUpdate, when the form is submmited it validates the values then updates the existing value with the newly entered values. In CategoryDelete it deletes a row in the Category model.
+```php
+public function CategoryUpdate(){
+    if(!$this->selectedCategory) return;
+    $validated = $this->validate([
+        'name'=>[
+            'required',
+            'string',
+            'unique:categories,name,' . ($this->selectedCategory->id ?? ''),
+        ],
+        'color' => 'required|string|in:' . implode(',', $this->colors),
+    ]);
+    $this->selectedCategory->name = $validated['name'];
+    $this->selectedCategory->color = $validated['color'];
+    $this->selectedCategory->save();
+    $this->categories = Category::all();
+    $this->successMessage = 'Category successfully updated!';
+    $this->Close();
+}
+public function CategoryDelete(){
+    if (!$this->selectedCategory) return;
+    $this->selectedCategory->delete();
+    $this->successMessage = 'Category deleted successfully!';
+    $this->categories = Category::all();
+    $this->Close();
+}
 ```
