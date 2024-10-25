@@ -327,3 +327,53 @@ public function CategoryDelete(){
     $this->Close();
 }
 ```
+
+## Model
+Model serve as the core components of our application's data architecture, representing different entities and establishing relationships between each models.
+
+### Category Model
+The Category model represents several classes or groupings of both entries and presets. Each category has features such as name and color to help categorize and visually identify related data. The model has a one-to-many link with both the Entry and Preset models, thus a category can have several entries or presets. This arrangement enables us to efficiently organize and filter data depending on categories.
+```php
+class Category extends Model
+{
+    use HasFactory;
+    
+    protected $fillable = ['name', 'color'];
+
+    public function entries(): HasMany {
+        return $this->hasMany(Entry::class);
+    }
+
+    public function presets(): HasMany {
+        return $this->hasMany(Preset::class);
+    }
+}
+```
+### Entry Model
+The Entry model displays individual records, such as transactions or activities. Each entry is associated with a specific Category via a many-to-one relationship, allowing data categorization. It retains the price, description, and date, allowing users to record particular information for each entry. This model is used to track data about a user's actions or transactions, with each item falling into a designated category.
+```php
+class Entry extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['category_id', 'price', 'description', 'date'];
+
+    public function category(): BelongsTo {
+        return $this->belongsTo(Category::class);
+    }
+}
+```
+### Preset Model
+The Preset type is intended to hold reusable settings or default values for frequently used tasks. Each preset is linked to a Category and contains predetermined values such as price, allowing users to apply recurring data without having to manually enter it each time. The many-to-one link with Category enables users to categorize these presets, simplifying data entry for repetitive activities.
+```php
+class Preset extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['price', 'category_id'];
+
+    public function category(): BelongsTo {
+        return $this->belongsTo(Category::class);
+    }
+}
+```
